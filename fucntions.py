@@ -62,3 +62,12 @@ def TypeF(instrn,output):
     Bin=Opcode+"00000000000"
     
     output.append(Bin)
+
+def mov(instrn,output):
+    
+    if instrn[2] in registers:
+        instrn[0]='movC'
+        TypeC(instrn,output)
+    else:
+        instrn[0]='movB'
+        TypeB(instrn,output)
