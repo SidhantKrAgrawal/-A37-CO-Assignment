@@ -51,8 +51,7 @@ def Printing(output):
         print(out)
 
 def Running(instrn,output,instructions):
-    try:
-        for line in instrn:
+    for line in instrn:
             if line[0]=='mov':
                 mov(line,output)
             elif instrnType[line[0]]=='A':
@@ -67,21 +66,22 @@ def Running(instrn,output,instructions):
                 TypeE(line,output,instructions)
             elif instrnType[line[0]]=='F':
                 TypeF(line,output)
-        Printing(output)
-    except:
-        print("ERROR: Invalid Instruction syntax");   
+            else:
+                print("ERROR: Invalid Instruction syntax")
+       
         
+    
 
-        
+try:       
 
+    instructions=Input(instrn)
 
+    Running(instrn,output,instructions)
 
+    Printing(output)
 
-instructions=Input(instrn)
-
-Running(instrn,output,instructions)
-
-
+except Exception as e:
+    print("ERROR in: ",e)
 
 
 

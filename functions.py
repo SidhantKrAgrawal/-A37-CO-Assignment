@@ -108,8 +108,12 @@ def TypeE(instrn,output,instructions):
     Bin = ""
 
     Opcode =instrnOpcode[instrn[0]]
-
-    mem_addr=DecToBin(labels[instrn[1]])
+    if instrn[1] in labels:
+        mem_addr=DecToBin(labels[instrn[1]])
+    elif instrn[1] in variables:
+        mem_addr=DecToBin(variables[instrn[1]]+instructions)
+    else:
+        print("ERROR: Memory address of Type E not defined")
 
     Bin=Opcode+"000"+mem_addr
 
