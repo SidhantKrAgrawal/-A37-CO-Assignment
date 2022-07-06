@@ -1,13 +1,6 @@
 
 from dictionaries import *
 
-# def DecToBin(num):
-#     if num >= 1:
-#         Bin=DecToBin(num // 2)
-#     else:
-#         Bin=""
-#     Bin=str(num%2)+Bin
-#     return Bin
 
 def DecToBin(num):
     num1=bin(num).replace("0b","")
@@ -17,8 +10,12 @@ def DecToBin(num):
     return (str2)
 
 def TypeA(instrn,output):
+    for i in range(1,4):
+        if instrn[i] not in registers:
+            print("Syntax error: The given input does not have the type of instructon!")
+            quit()
     Bin=""
-    
+
     Opcode=instrnOpcode[instrn[0]]
     reg = registers[instrn[1]] + registers[instrn[2]] + registers[instrn[3]]
 
@@ -27,6 +24,20 @@ def TypeA(instrn,output):
     output.append(Bin)
 
 def TypeB(instrn,output):
+    if instrn[2][0] != "$" and instrn[1][0] == "R":
+        TypeC(instrn,output)
+    elif instrn[1][0] != "R":
+        print("Syntax Error")
+        quit()
+    else:
+        x=int(instrn[-1][1:])
+        if x<0 or x>255:
+            print('Syntax error: Illegal Immediate values')
+            quit()
+        
+        if instrn[1] not in registers:
+            print("Invalid register used")
+            quit()
     Bin = ""
 
     Opcode=instrnOpcode[instrn[0]]
@@ -42,18 +53,35 @@ def TypeC(instrn,output):
     Bin = ""
 
     Opcode=instrnOpcode[instrn[0]]
-    reg=registers[instrn[1]]  + registers[instrn[2]]  
+    if instrn[2]=="FLAGS":
+        if instrn[1] not in registers:
+            print("Syntax error: The given input does not have the type of instructon!")
+            quit()
+        reg=registers[instrn[1]]  + flag[instrn[2]]
+    else:
+        if instrn[1] not in registers:
+            print("Syntax error: The given input does not have the type of instructon!")
+            quit()
+        if instrn[2] not in registers:
+            print("Syntax error: The given input does not have the type of instructon!")
+            quit()
+        reg=registers[instrn[1]]  + registers[instrn[2]]  
 
     Bin = Opcode +"00000" +reg
 
     output.append(Bin)
 
 def TypeD(instrn,output,instructions):
+    if instrn[1] not in registers:
+        print("Invalid register used")
+        quit()    
     Bin = ""
 
     Opcode =instrnOpcode[instrn[0]]
     reg=registers[instrn[1]]
-    
+    if instrn[-1] not in variables:
+        print('SytaxError: Misuse of variables')
+        quit()
    
     mem_addr=DecToBin(variables[instrn[2]]+instructions)
  
@@ -62,6 +90,7 @@ def TypeD(instrn,output,instructions):
     output.append(Bin)
 
 def TypeE(instrn,output,instructions):
+  
     Bin = ""
 
     Opcode =instrnOpcode[instrn[0]]
