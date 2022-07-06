@@ -10,6 +10,9 @@ def DecToBin(num):
     return (str2)
 
 def TypeA(instrn,output):
+    if len(instrn) != 4:
+        print("SyntaxError: Not all required paramters provided for Type A command")
+        quit()
     for i in range(1,4):
         if instrn[i] not in registers:
             print("Syntax error: The given input does not have the type of instructon!")
@@ -24,6 +27,9 @@ def TypeA(instrn,output):
     output.append(Bin)
 
 def TypeB(instrn,output):
+    if len(instrn) != 3:
+        print("SyntaxError: Not all required paramters provided for Type B command")
+        quit()
     if instrn[2][0] != "$" and instrn[1][0] == "R":
         TypeC(instrn,output)
     elif instrn[1][0] != "R":
@@ -50,6 +56,9 @@ def TypeB(instrn,output):
     output.append(Bin)
 
 def TypeC(instrn,output):
+    if len(instrn) != 3:
+        print("SyntaxError: Not all required paramters provided for Type C command")
+        quit()
     Bin = ""
 
     Opcode=instrnOpcode[instrn[0]]
@@ -72,6 +81,9 @@ def TypeC(instrn,output):
     output.append(Bin)
 
 def TypeD(instrn,output,instructions):
+    if len(instrn)!=3:
+        print("SyntaxError: Not all required parametrs provided for Type D command")
+        quit()
     if instrn[1] not in registers:
         print("Invalid register used")
         quit()    
@@ -90,7 +102,9 @@ def TypeD(instrn,output,instructions):
     output.append(Bin)
 
 def TypeE(instrn,output,instructions):
-  
+    if len(instrn)!=2:
+        print("SyntaxError : Wrong syntax used for instructions")
+        quit()
     Bin = ""
 
     Opcode =instrnOpcode[instrn[0]]

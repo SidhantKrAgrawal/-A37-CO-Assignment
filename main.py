@@ -46,40 +46,42 @@ def Input(instrn):
             Flag=False
     return instructions
 
-def Running(instrn,output,instructions):
-    for line in instrn:
-        if line[0]=='mov':
-            mov(line,output)
-        elif instrnType[line[0]]=='A':
-            TypeA(line,output)
-        elif instrnType[line[0]]=='B':
-            TypeB(line,output)
-        elif instrnType[line[0]]=='C':
-            TypeC(line,output)
-        elif instrnType[line[0]]=='D':
-            TypeD(line,output,instructions)
-        elif instrnType[line[0]]=='E':
-            TypeE(line,output,instructions)
-        elif instrnType[line[0]]=='F':
-            TypeF(line,output)
-        else:
-            print("ERROR: Invalid Opcode instruction")
-        
 def Printing(output):
     for out in output:
         print(out)
+
+def Running(instrn,output,instructions):
+    try:
+        for line in instrn:
+            if line[0]=='mov':
+                mov(line,output)
+            elif instrnType[line[0]]=='A':
+                TypeA(line,output)
+            elif instrnType[line[0]]=='B':
+                TypeB(line,output)
+            elif instrnType[line[0]]=='C':
+                TypeC(line,output)
+            elif instrnType[line[0]]=='D':
+                TypeD(line,output,instructions)
+            elif instrnType[line[0]]=='E':
+                TypeE(line,output,instructions)
+            elif instrnType[line[0]]=='F':
+                TypeF(line,output)
+        Printing(output)
+    except:
+        print("ERROR: Invalid Instruction syntax");   
+        
+
         
 
 
 
-try:
-    instructions=Input(instrn)
 
-    Running(instrn,output,instructions)
-    Printing(output)
+instructions=Input(instrn)
 
-except:
-     print("Something went Wrong")
+Running(instrn,output,instructions)
+
+
 
 
 
