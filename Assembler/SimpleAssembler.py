@@ -6,11 +6,12 @@ instrn=[]
 output=[]
 
 def Input(instrn):
-    instructions=-1
+    instructions=0
     Flag=True
+    count =1
     while True:
         line = input()
-        count =1
+        
         if line == '':
             break
         line =line.split()
@@ -44,7 +45,9 @@ def Input(instrn):
             instrn.append(line)
             instructions+=1
             Flag=False
-    return instructions
+        if line[0]=="hlt":
+            break
+    return (instructions-1)
 
 def Printing(output):
     for out in output:
