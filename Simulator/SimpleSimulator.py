@@ -20,13 +20,12 @@ def Input(instrn):
     return instructions
 
 
-def func_Calling(arg,r_line):
+def func_Calling(arg,r_line,inst):
     match arg:
         case "A":
             return TypeA()
-        case "B":
-            
-            return TypeB(r_line[5:8],r_line[8:16])
+        case "B":           
+            return TypeB(inst,r_line[5:8],r_line[8:16])
         case "C":
             return TypeC()
         case "D":
@@ -39,9 +38,10 @@ def func_Calling(arg,r_line):
 
 def Running(instrn):
     for line in instrn:
-        x=instrnType[instrnOpcode[line[:5]]]
+        y=instrnOpcode[line[:5]]
+        x=instrnType[y]
         
-        func_Calling(x,line)
+        func_Calling(x,line,y)
 
 
 

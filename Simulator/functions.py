@@ -5,13 +5,17 @@ from dictionaries import *
 def TypeA():
     pass
 
-def TypeB(reg,imm):
+def TypeB(inst,reg,imm):
     mapping["PC"]+=1
     
     x=registers[reg]
-
-    mapping[x]=int(imm)
-
+    
+    if (inst=="movB"):
+        mapping[x]=int(imm,2)
+    elif(inst=="rs"):
+        mapping[x]=mapping[x]>>int(imm,2)
+    elif(inst=="ls"):
+        mapping[x]=mapping[x]<<int(imm,2)
     printing()
     
 def TypeC():
