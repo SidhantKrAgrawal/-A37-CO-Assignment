@@ -1,11 +1,14 @@
+from dictionaries import *
+
 instrn=[]
-PC=[0]
-R0=[0]
-R1=[0]
-R2=[0]
-R3=[0]
-R4=[0]
-R5=[0]
-R6=[0]
-flags=[0]
 memory=[0000000000000000]*256
+
+def DecToBin(num,x):
+    num1=bin(num).replace("0b","")
+    str1 = str(num1)
+    length=len(str1)
+    str2= "0"*(x-length)+str1
+    return (str2)
+
+def printing():
+    print(DecToBin(mapping["PC"],8)+" "+DecToBin(mapping["R0"],16)+" "+DecToBin(mapping["R1"],16)+" "+DecToBin(mapping["R2"],16)+" "+DecToBin(mapping["R3"],16)+" "+DecToBin(mapping["R4"],16)+" "+DecToBin(mapping["R5"],16)+" "+DecToBin(mapping["R6"],16)+" "+DecToBin(mapping["flags"],16))
