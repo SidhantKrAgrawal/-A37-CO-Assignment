@@ -23,7 +23,7 @@ def Input(instrn):
 def func_Calling(arg,r_line,inst):
     match arg:
         case "A":
-            return TypeA()
+            return TypeA(inst,r_line[7:10],r_line[10:13],r_line[13:16])
         case "B":           
             return TypeB(inst,r_line[5:8],r_line[8:16])
         case "C":
