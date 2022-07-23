@@ -23,6 +23,8 @@ def TypeA(inst,reg1,reg2,reg3):
     
     printing()
 
+    return 0
+
 def TypeB(inst,reg,imm):
     mapping["PC"]+=1
     
@@ -36,14 +38,42 @@ def TypeB(inst,reg,imm):
         mapping[x]=mapping[x]<<int(imm,2)
     printing()
     
-def TypeC():
+    return 0
+
+def TypeC(inst,reg1,reg2):
+    mapping["PC"]+=1
+
+    x=registers[reg1]
+    y=registers[reg2]
+
+    if(inst=="movC"):
+        pass
+    elif(inst=="div"):
+        pass
+    elif(inst=="not"):
+        pass
+    elif(inst=="cmp"):
+        if(mapping[x]<mapping[y]):
+            mapping["flags"]=4
+        pass
+
+    printing()
+    return 0
+
+def TypeD(inst,reg1,mem_addr):
+    mapping["PC"]+=1
+
+    x=registers[reg1]
+
+    if(inst=="ld"):
+        mem=int(mem_addr,2)
+        mapping[x]=int(memory[mem],2)
+    
+    printing()
+    return 0
+
+def TypeE(inst,mem_addr):
     pass
 
-def TypeD():
-    pass
-
-def TypeE():
-    pass
-
-def TypeF():
+def TypeF(inst):
     pass
