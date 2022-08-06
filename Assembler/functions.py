@@ -62,11 +62,11 @@ def TypeC(instrn,output,count):
     Bin = ""
 
     Opcode=instrnOpcode[instrn[0]]
-    if instrn[2]=="FLAGS":
-        if instrn[1] not in registers:
+    if instrn[1]=="FLAGS":
+        if instrn[2] not in registers:
             sys.stdout.write("Syntax error: The given input does not have the type of instructon!  in line no: "+str(count))
             quit()
-        reg=registers[instrn[1]]  + flag[instrn[2]]
+        reg=flag[instrn[1]] + registers[instrn[2]]  
     else:
         if instrn[1] not in registers:
             sys.stdout.write("Syntax error: The given input does not have the type of instructon! in line no: "+str(count))

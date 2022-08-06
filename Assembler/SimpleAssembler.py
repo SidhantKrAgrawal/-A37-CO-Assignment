@@ -18,8 +18,9 @@ def Input(instrn):
         if not line:
             break
         line =line.split()
-        # print(line)
-        if line[0]=='var' and Flag==True:
+        if len(line)==0:
+            continue
+        elif line[0]=='var' and Flag==True:
             if line[1] not in variables:
                 variables[line[1]]=count
                 count+=1
