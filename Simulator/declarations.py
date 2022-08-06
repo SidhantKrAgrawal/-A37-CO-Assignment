@@ -1,5 +1,5 @@
 from dictionaries import *
-
+import sys
 instrn=[]
 memory=["0000000000000000"]*256
 # global cycle
@@ -14,4 +14,4 @@ def DecToBin(num,x):
     return (str2)
 
 def printing():
-    print(DecToBin(mapping["PC"],8)+" "+DecToBin(mapping["R0"],16)+" "+DecToBin(mapping["R1"],16)+" "+DecToBin(mapping["R2"],16)+" "+DecToBin(mapping["R3"],16)+" "+DecToBin(mapping["R4"],16)+" "+DecToBin(mapping["R5"],16)+" "+DecToBin(mapping["R6"],16)+" "+DecToBin(mapping["flags"],16))
+    sys.stdout.write(DecToBin(mapping["PC"],8)+" "+DecToBin(mapping["R0"],16)+" "+DecToBin(mapping["R1"],16)+" "+DecToBin(mapping["R2"],16)+" "+DecToBin(mapping["R3"],16)+" "+DecToBin(mapping["R4"],16)+" "+DecToBin(mapping["R5"],16)+" "+DecToBin(mapping["R6"],16)+" "+DecToBin(mapping["flags"],16))

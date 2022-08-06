@@ -132,6 +132,6 @@ def TypeE(inst,mem_addr):
 
 def TypeF(inst):
     for i in memory:
-        print(i)
+        sys.stdout.write(i)
     return 1
 

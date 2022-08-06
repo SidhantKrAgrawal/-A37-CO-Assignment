@@ -5,11 +5,12 @@ import matplotlib.pyplot as plt
 
 def Input(instrn):
     instructions=-1
-    while True:
-        line = input()
+    lines = sys.stdin.readlines()
+    for line in lines:
+        # line = input()
         
-        if line == '':
-            break
+        # if line == '':
+        #     break
 
         instrn.append(line)
         instructions+=1
