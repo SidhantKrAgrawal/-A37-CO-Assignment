@@ -34,8 +34,9 @@ def TypeA(inst,reg1,reg2,reg3):
 def TypeB(inst,reg,imm):
     
     xax.append(mapping["cycle"])
-    print(xax)
+    # print(xax)
     yax.append(mapping["PC"])
+
     mapping["cycle"]=mapping["cycle"] + 1
 
     mapping["flags"]=0
@@ -117,20 +118,27 @@ def TypeE(inst,mem_addr):
         if(mapping["flags"]==4):
             mem=int(mem_addr,2)
             mapping["PC"]=mem
+        else:
+            mapping["PC"]+=1
     elif(inst=='jgt'):
         if(mapping["flags"]==2):
             mem=int(mem_addr,2)
             mapping["PC"]=mem
+        else:
+            mapping["PC"]+=1
     elif(inst=='je'):
         if(mapping["flags"]==1):
             mem=int(mem_addr,2)
             mapping["PC"]=mem
+        else:
+            mapping["PC"]+=1
 
     
     mapping["flags"]=0
     return 0
 
 def TypeF(inst):
+    printing()
     for i in memory:
         sys.stdout.write(i)
         sys.stdout.write("\n")

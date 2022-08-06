@@ -13,27 +13,17 @@ def Input(instrn):
         if line=="\n":
             break
         # print(line)
+        line = line[:-1]
         instrn.append(line)
         instructions+=1
         memory[instructions]=str(line)
-
+        if line == '0101000000000000':
+            break
     return instructions
 
 
 def func_Calling(arg,r_line,inst):
-    # match arg:
-    #     case "A":
-    #         return TypeA(inst,r_line[7:10],r_line[10:13],r_line[13:16])
-    #     case "B":           
-    #         return TypeB(inst,r_line[5:8],r_line[8:16])
-    #     case "C":
-    #         return TypeC(inst,r_line[10:13],r_line[13:16])
-    #     case "D":
-    #         return TypeD(inst,r_line[5:8],r_line[8:16])
-    #     case "E":
-    #         return TypeE(inst,r_line[8:16])
-    #     case "F":
-    #         return TypeF(inst)
+
     if arg=='A':
         return TypeA(inst,r_line[7:10],r_line[10:13],r_line[13:16])
     elif arg=='B':
