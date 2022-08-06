@@ -1,5 +1,6 @@
 from dictionaries import *
 from functions import *
+import sys
 
 
 instrn=[]
@@ -9,11 +10,12 @@ def Input(instrn):
     instructions=0
     Flag=True
     count =1
-    while True:
-        line = input()
+    lines = sys.stdin.readlines()
+    for line in lines:
+        # line = input()
         
-        if line == '':
-            break
+        # if line == '':
+        #     break
         line =line.split()
         # print(line)
         if line[0]=='var' and Flag==True:
@@ -21,19 +23,19 @@ def Input(instrn):
                 variables[line[1]]=count
                 count+=1
             else:
-                print("ERROR : Declaration of variable multiple times")
+                sys.stdout.write("ERROR : Declaration of variable multiple times")
                 break
         elif line[0]=='var' and Flag==False:
-            print("ERROR: Declaration of variable between the code")
+            sys.stdout.write("ERROR: Declaration of variable between the code")
             break
 
         elif line[0].endswith(":"):
             line[0]=line[0].replace(":","")
             if (line[0]) in variables:
-                print("ERROR: Naming of label and variable is same")
+                sys.stdout.write("ERROR: Naming of label and variable is same")
                 break
             elif (line[0]) in labels:
-                print("ERROR : Use of label multiple times")
+                sys.stdout.write("ERROR : Use of label multiple times")
                 break
             else:
                 labels[line[0]]=instructions
@@ -51,27 +53,28 @@ def Input(instrn):
 
 def Printing(output):
     for out in output:
-        print(out)
+        sys.stdout.write(out)
 
 def Running(instrn,output,instructions):
+    count=0
     for line in instrn:
             if line[0]=='mov':
-                mov(line,output)
+                mov(line,output,count)
             elif instrnType[line[0]]=='A':
-                TypeA(line,output)
+                TypeA(line,output,count)
             elif instrnType[line[0]]=='B':
-                TypeB(line,output)
+                TypeB(line,output,count)
             elif instrnType[line[0]]=='C':
-                TypeC(line,output)
+                TypeC(line,output,count)
             elif instrnType[line[0]]=='D':
-                TypeD(line,output,instructions)
+                TypeD(line,output,instructions,count)
             elif instrnType[line[0]]=='E':
-                TypeE(line,output,instructions)
+                TypeE(line,output,instructions,count)
             elif instrnType[line[0]]=='F':
-                TypeF(line,output)
+                TypeF(line,output,count)
             else:
-                print("ERROR: Invalid Instruction syntax")
-       
+                sys.stdout.write("ERROR: Invalid Instruction syntax")
+            count+=1
         
     
 
@@ -84,7 +87,7 @@ try:
     Printing(output)
 
 except Exception as e:
-    print("ERROR in: ",e)
+    sys.stdout.write("ERROR in: ",e)
 
 
 
