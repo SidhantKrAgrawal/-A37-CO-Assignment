@@ -3,7 +3,7 @@ from dictionaries import *
 
 
 def TypeA(inst,reg1,reg2,reg3):
-    mapping["PC"]+=1
+    
     mapping["flags"]=0
     x=registers[reg1]
     y=registers[reg2]
@@ -23,11 +23,11 @@ def TypeA(inst,reg1,reg2,reg3):
         mapping[z]=mapping[y]&mapping[x]
     
     printing()
-
+    mapping["PC"]+=1
     return 0
 
 def TypeB(inst,reg,imm):
-    mapping["PC"]+=1
+    
     mapping["flags"]=0
     x=registers[reg]
     
@@ -38,11 +38,11 @@ def TypeB(inst,reg,imm):
     elif(inst=="ls"):
         mapping[x]=mapping[x]<<int(imm,2)
     printing()
-    
+    mapping["PC"]+=1
     return 0
 
 def TypeC(inst,reg1,reg2):
-    mapping["PC"]+=1
+    
     mapping["flags"]=0
     x=registers[reg1]
     y=registers[reg2]
@@ -62,10 +62,11 @@ def TypeC(inst,reg1,reg2):
             mapping["flags"]=1
 
     printing()
+    mapping["PC"]+=1
     return 0
 
 def TypeD(inst,reg1,mem_addr):
-    mapping["PC"]+=1
+    
     mapping["flags"]=0
     x=registers[reg1]
 
@@ -74,13 +75,14 @@ def TypeD(inst,reg1,mem_addr):
         mapping[x]=int(memory[mem],2)
     elif(inst=='st'):
         mem=int(mem_addr,2)
-        memory[mem]=DecToBin(mapping[x],16)
+        memory[mem]=str(DecToBin(mapping[x],16))
     
     printing()
+    mapping["PC"]+=1
     return 0
 
 def TypeE(inst,mem_addr):
-    
+    printing()
     if(inst=='jmp'):
         mem=int(mem_addr,2)
         mapping["PC"]=mem
@@ -97,9 +99,11 @@ def TypeE(inst,mem_addr):
             mem=int(mem_addr,2)
             mapping["PC"]=mem
 
-    printing()
+    
     mapping["flags"]=0
     return 0
 
 def TypeF(inst):
-    pass
+    for i in memory:
+        print(i)
+    return 1

@@ -1,7 +1,7 @@
 from dictionaries import *
 
 instrn=[]
-memory=[0000000000000000]*256
+memory=["0000000000000000"]*256
 
 def DecToBin(num,x):
     num1=bin(num).replace("0b","")

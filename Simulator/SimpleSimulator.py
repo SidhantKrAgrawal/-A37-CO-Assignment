@@ -13,7 +13,7 @@ def Input(instrn):
 
         instrn.append(line)
         instructions+=1
-        memory[instructions]=line
+        memory[instructions]=str(line)
 
     return instructions
 
@@ -35,11 +35,6 @@ def func_Calling(arg,r_line,inst):
 
 
 def Running(instrn):
-    # for line in instrn:
-    #     y=instrnOpcode[line[:5]]
-    #     x=instrnType[y]
-        
-    #     func_Calling(x,line,y)
 
     while(True):
         line=instrn[mapping['PC']]
@@ -52,13 +47,7 @@ def Running(instrn):
             break
 
 
-
-
-
 instructions = Input(instrn)
-
-
-printing()
 
 
 Running(instrn)
