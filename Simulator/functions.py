@@ -1,9 +1,14 @@
+
 from declarations import *
 from dictionaries import *
 
 
 def TypeA(inst,reg1,reg2,reg3):
     
+    xax.append(mapping["cycle"])
+    yax.append(mapping["PC"])
+    mapping["cycle"]+=1
+
     mapping["flags"]=0
     x=registers[reg1]
     y=registers[reg2]
@@ -28,6 +33,11 @@ def TypeA(inst,reg1,reg2,reg3):
 
 def TypeB(inst,reg,imm):
     
+    xax.append(mapping["cycle"])
+    print(xax)
+    yax.append(mapping["PC"])
+    mapping["cycle"]=mapping["cycle"] + 1
+
     mapping["flags"]=0
     x=registers[reg]
     
@@ -43,6 +53,10 @@ def TypeB(inst,reg,imm):
 
 def TypeC(inst,reg1,reg2):
     
+    xax.append(mapping["cycle"])
+    yax.append(mapping["PC"])
+    mapping["cycle"]+=1
+
     mapping["flags"]=0
     x=registers[reg1]
     y=registers[reg2]
@@ -67,21 +81,34 @@ def TypeC(inst,reg1,reg2):
 
 def TypeD(inst,reg1,mem_addr):
     
+    xax.append(mapping["cycle"])
+    yax.append(mapping["PC"])
+    
+
     mapping["flags"]=0
     x=registers[reg1]
-
+    
     if(inst=="ld"):
         mem=int(mem_addr,2)
         mapping[x]=int(memory[mem],2)
     elif(inst=='st'):
         mem=int(mem_addr,2)
         memory[mem]=str(DecToBin(mapping[x],16))
-    
+
+    xax.append(mapping["cycle"])
+    yax.append(mem)
+    mapping["cycle"]+=1
+
     printing()
     mapping["PC"]+=1
     return 0
 
 def TypeE(inst,mem_addr):
+    
+    xax.append(mapping["cycle"])
+    yax.append(mapping["PC"])
+    mapping["cycle"]+=1
+
     printing()
     if(inst=='jmp'):
         mem=int(mem_addr,2)
@@ -107,3 +134,4 @@ def TypeF(inst):
     for i in memory:
         print(i)
     return 1
+

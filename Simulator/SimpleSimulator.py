@@ -1,7 +1,7 @@
 from declarations import *
 from dictionaries import *
 from functions import *
-
+import matplotlib.pyplot as plt
 
 def Input(instrn):
     instructions=-1
@@ -35,7 +35,7 @@ def func_Calling(arg,r_line,inst):
 
 
 def Running(instrn):
-
+   
     while(True):
         line=instrn[mapping['PC']]
         y=instrnOpcode[line[:5]]
@@ -52,3 +52,6 @@ instructions = Input(instrn)
 
 Running(instrn)
 
+
+plt.scatter(xax,yax,c="blue")
+plt.show()

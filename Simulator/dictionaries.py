@@ -22,5 +22,6 @@ mapping = {
     "R4":0,
     "R5":0,
     "R6":0,
-    "flags":0
+    "flags":0,
+    "cycle":0
 }

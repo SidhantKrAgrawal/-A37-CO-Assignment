@@ -2,6 +2,9 @@ from dictionaries import *
 
 instrn=[]
 memory=["0000000000000000"]*256
+# global cycle
+xax = []
+yax = []
 
 def DecToBin(num,x):
     num1=bin(num).replace("0b","")
