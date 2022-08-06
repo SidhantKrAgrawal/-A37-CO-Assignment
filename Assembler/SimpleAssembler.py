@@ -10,12 +10,13 @@ def Input(instrn):
     instructions=0
     Flag=True
     count =1
-    lines = sys.stdin.readlines()
-    for line in lines:
-        # line = input()
+    # lines = sys.stdin.readlines()
+    # print(lines)
+    while True:
+        line = sys.stdin.readline()
         
-        # if line == '':
-        #     break
+        if not line:
+            break
         line =line.split()
         # print(line)
         if line[0]=='var' and Flag==True:
@@ -54,6 +55,7 @@ def Input(instrn):
 def Printing(output):
     for out in output:
         sys.stdout.write(out)
+        sys.stdout.write("\n")
 
 def Running(instrn,output,instructions):
     count=0
@@ -78,16 +80,14 @@ def Running(instrn,output,instructions):
         
     
 
-try:       
+   
+instructions=Input(instrn)
 
-    instructions=Input(instrn)
+Running(instrn,output,instructions)
 
-    Running(instrn,output,instructions)
+Printing(output)
 
-    Printing(output)
 
-except Exception as e:
-    sys.stdout.write("ERROR in: ",e)
 
 
 
