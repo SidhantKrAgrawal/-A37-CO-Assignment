@@ -5,13 +5,14 @@ import matplotlib.pyplot as plt
 
 def Input(instrn):
     instructions=-1
-    lines = sys.stdin.readlines()
-    for line in lines:
-        # line = input()
-        
-        # if line == '':
-        #     break
-
+    # lines = sys.stdin.readlines()
+    while True:
+        line = sys.stdin.readline()
+        if not line:
+            break
+        if line=="\n":
+            break
+        # print(line)
         instrn.append(line)
         instructions+=1
         memory[instructions]=str(line)
